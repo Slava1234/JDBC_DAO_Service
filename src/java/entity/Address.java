@@ -4,7 +4,6 @@ import java.util.Objects;
 
 
 public class Address {
-    // Если больше двух полешй, лучше использовать геттеры и сеттеры
     private int id;
     private String country;
     private String city;
@@ -16,7 +15,7 @@ public class Address {
 
     public int getId() {
         return id;
-    }
+    } 
 
     public String getCountry() {
         return country;
