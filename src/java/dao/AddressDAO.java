@@ -20,4 +20,7 @@ public interface AddressDAO {
      
     // delete
     public void remove(Address address);
+    
+    // getMaxId
+    public int newId();
 }

@@ -10,7 +10,7 @@ import service.EmplProjSerivice;
 import service.EmployeeService;
 import service.ProjectService;
 
-public class Domain {
+public class Main {
 
     public static void main(String[] args) {
         AddressService addressService = new AddressService();
@@ -21,7 +21,7 @@ public class Domain {
         Calendar calendar = Calendar.getInstance();
 
         Address address = new Address();
-        address.setId(1);
+        address.setId(addressService.newId() + 1);
         address.setCountry("USA");
         address.setCity("New-Yourk");
         address.setStreet("Sikar street 10");

@@ -44,7 +44,7 @@ public class Address {
     public void setStreet(String street) {
         this.street = street;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;

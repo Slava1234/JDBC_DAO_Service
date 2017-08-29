@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class AddressService extends Util implements AddressDAO {
+
     Connection connection = getConnection();
 
     @Override
@@ -167,9 +168,9 @@ public class AddressService extends Util implements AddressDAO {
         try {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, address.getId());
-            
+
             preparedStatement.executeUpdate();
-            
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
@@ -188,6 +189,43 @@ public class AddressService extends Util implements AddressDAO {
                 }
             }
         }
+    }
+
+    @Override
+    public int newId() {
+        PreparedStatement preparedStatement = null;
+
+        String query = "SELECT MAX(id) AS max_id FROM address";
+        int maxId = 0;
+
+        try {
+            preparedStatement = connection.prepareStatement(query);
+           
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            maxId = resultSet.getInt("max_id");
+            
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+
+        return maxId + 1;
     }
 
 }
